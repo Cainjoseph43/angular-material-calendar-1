@@ -17,36 +17,40 @@
 
 <body ng-app="demo" ng-cloak>
     <div ng-controller="MainCtrl as vm" id="demo" layout="column" style="height: 100%;  background-color: #EBEBEB;">
-        <md-toolbar>
+        <md-toolbar layout="row">
             <div class="md-toolbar-tools">
                 <h2>Angular Material Calendar</h2>
                 <span flex></span>
-                <a href="#demo">Demo</a>
-                <a href="#event-editor">Event editor</a>
-                <a href="https://github.com/Jupitar/angular-material-calendar#installation">Installation</a>
-                <a href="https://github.com/Jupitar/angular-material-calendar#documentation">Documentation</a>
+                <a hide-sm hide-x href="#demo">Demo</a>
+                <a hide-sm hide-x href="#event-editor">Event editor</a>
+                <a hide-sm hide-x href="https://github.com/Jupitar/angular-material-calendar#installation">Installation</a>
+                <a hide-sm hide-x href="https://github.com/Jupitar/angular-material-calendar#documentation">Documentation</a>
             </div>
         </md-toolbar>
         <md-content>
             <md-card layout-padding flex>
                 <h2 style="text-align:center;">{{ vm.calendarTitle }}</h2>
-                <div layout="row">
-                    <md-button md-date-modifier date="vm.calendarDay" decrement="vm.calendarView">
-                        Previous
-                    </md-button>
-                    <md-button md-date-modifier date="vm.calendarDay" set-to-today>
-                        Today
-                    </md-button>
-                    <md-button md-date-modifier date="vm.calendarDay" increment="vm.calendarView">
-                        Next
-                    </md-button>
-                    <span flex></span>
-                    <md-radio-group ng-model="vm.calendarView">
-                        <md-radio-button class="md-primary" value="year">Year</md-radio-button>
-                        <md-radio-button class="md-primary" value="month">Month</md-radio-button>
-                        <md-radio-button class="md-primary" value="week">Week</md-radio-button>
-                        <md-radio-button class="md-primary" value="day">Day</md-radio-button>
-                    </md-radio-group>
+                <div layout-xs="column" layout-sm="column" layout-gt-sm="row" layout-align="center center" layout-align-gt-sm="none none">
+                    <div flex>
+                        <md-button md-date-modifier date="vm.calendarDay" decrement="vm.calendarView">
+                            Previous
+                        </md-button>
+                        <md-button md-date-modifier date="vm.calendarDay" set-to-today>
+                            Today
+                        </md-button>
+                        <md-button md-date-modifier date="vm.calendarDay" increment="vm.calendarView">
+                            Next
+                        </md-button>
+                    </div>
+                    <span flex="20"></span>
+                    <div flex>
+                        <md-radio-group ng-model="vm.calendarView">
+                            <md-radio-button class="md-primary" value="year">Year</md-radio-button>
+                            <md-radio-button class="md-primary" value="month">Month</md-radio-button>
+                            <md-radio-button class="md-primary" value="week">Week</md-radio-button>
+                            <md-radio-button class="md-primary" value="day">Day</md-radio-button>
+                        </md-radio-group>
+                    </div>
                 </div>
                 <br>
                 <md-large-calendar events="vm.events" view="vm.calendarView" view-title="vm.calendarTitle" current-day="vm.calendarDay" on-event-click="vm.eventClicked(calendarEvent)" on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd" on-edit-event-click="vm.eventEdited(calendarEvent)" on-delete-event-click="vm.eventDeleted(calendarEvent)" cell-is-open="vm.isCellOpen" day-view-start="06:00" day-view-end="22:00" day-view-split="30" cell-modifier="vm.modifyCell(calendarCell)">
@@ -92,7 +96,7 @@
                 <md-card-content>
                     <div layout="column" ng-cloak class="md-inline-form">
                         <form ng-repeat="event in vm.events track by $index">
-                            <div layout-gt-xs="row">
+                            <div layout-xs="column" layout-sm="column" layout-gt-sm="row">
                                 <tr ng-repeat="event in vm.events track by $index">
                                     <md-input-container>
                                         <label>Title</label>

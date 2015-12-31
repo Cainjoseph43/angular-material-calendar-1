@@ -18,7 +18,7 @@
     ng-bind="day.label">
   </span>
 
-    <small ng-show="day.badgeTotal > 0">{{ day.badgeTotal }} event<span ng-if="day.badgeTotal > 1">s</span></small>
+    <small ng-show="day.badgeTotal > 0">{{ day.badgeTotal }}</small>
 
   <div class="cal-day-tick" ng-show="dayIndex === vm.openDayIndex && vm.view[vm.openDayIndex].events.length > 0">
     <i class="material-icons">keyboard_arrow_up</i>
