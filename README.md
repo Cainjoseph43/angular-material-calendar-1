@@ -23,7 +23,7 @@ Pull requests are welcome.
 ## Installation
 
 The calendar has a few dependencies, these are as follows, and must be included BEFORE the plugin files:
-
+cd
 * [AngularJS](https://angularjs.org/) 1.3.x or 1.4.x are supported
 * [Angular Material](https://material.angularjs.org/) 0.11.x 
 * [Moment.js](http://momentjs.com/)
