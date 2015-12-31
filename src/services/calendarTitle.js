@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
+  .module('md.calendar')
   .factory('calendarTitle', function(moment, calendarConfig, calendarHelper) {
 
     function day(currentDay) {

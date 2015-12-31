@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
+  .module('md.calendar')
   .filter('calendarTrustAsHtml', function($sce) {
 
     return function(text) {

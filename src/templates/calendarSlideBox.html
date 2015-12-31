@@ -1,39 +1,20 @@
-<div class="cal-slide-box" uib-collapse="vm.isCollapsed" mwl-collapse-fallback="vm.isCollapsed">
+<div class="cal-slide-box" md-collapse-fallback="vm.isCollapsed">
   <div class="cal-slide-content cal-event-list">
-    <ul class="unstyled list-unstyled">
+    <md-list>
 
-      <li
-        ng-repeat="event in vm.events | orderBy:'startsAt' track by event.$id"
-        ng-class="event.cssClass"
-        mwl-draggable="event.draggable === true"
-        drop-data="{event: event}">
-        <span class="pull-left event" ng-class="'event-' + event.type"></span>
-        &nbsp;
-        <a
-          href="javascript:;"
-          class="event-item"
-          ng-click="vm.onEventClick({calendarEvent: event})">
-          <span ng-bind-html="vm.$sce.trustAsHtml(event.title)"></span>
-          (<span ng-bind="event.startsAt | calendarDate:(isMonthView ? 'time' : 'datetime'):true"></span><span ng-if="vm.calendarConfig.displayEventEndTimes && event.endsAt"> - <span ng-bind="event.endsAt | calendarDate:(isMonthView ? 'time' : 'datetime'):true"></span></span>)
-        </a>
+        <md-list-item ng-repeat="event in vm.events | orderBy:'startsAt' track by event.$id" ng-class="event.cssClass" md-draggable="event.draggable === true" drop-data="{event: event}">
+            <div class="md-list-item-text">
+                <h4>
+                    <span ng-bind-html="vm.$sce.trustAsHtml(event.title)"></span> (
+                    <span ng-bind="event.startsAt | calendarDate:(isMonthView ? 'time' : 'datetime'):true"></span><span ng-if="vm.calendarConfig.displayEventEndTimes && event.endsAt"> - <span ng-bind="event.endsAt | calendarDate:(isMonthView ? 'time' : 'datetime'):true"></span></span>)
+                </h4>
+            </div>
+            <md-button class="md-secondary" ng-click="vm.onEventClick({calendarEvent: event})">View</md-button>
+            <md-button class="md-secondary" ng-if="vm.editEventHtml && event.editable !== false" ng-bind-html="vm.$sce.trustAsHtml(vm.editEventHtml)" ng-click="vm.onEditEventClick({calendarEvent: event})">Edit</md-button>
+            <md-button class="md-secondary" ng-if="vm.deleteEventHtml && event.deletable !== false" ng-bind-html="vm.$sce.trustAsHtml(vm.deleteEventHtml)" ng-click="vm.onDeleteEventClick({calendarEvent: event})">Delete</md-button>
+            <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
 
-        <a
-          href="javascript:;"
-          class="event-item-edit"
-          ng-if="vm.editEventHtml && event.editable !== false"
-          ng-bind-html="vm.$sce.trustAsHtml(vm.editEventHtml)"
-          ng-click="vm.onEditEventClick({calendarEvent: event})">
-        </a>
-
-        <a
-          href="javascript:;"
-          class="event-item-delete"
-          ng-if="vm.deleteEventHtml && event.deletable !== false"
-          ng-bind-html="vm.$sce.trustAsHtml(vm.deleteEventHtml)"
-          ng-click="vm.onDeleteEventClick({calendarEvent: event})">
-        </a>
-      </li>
-
-    </ul>
+    </md-list>
   </div>
 </div>

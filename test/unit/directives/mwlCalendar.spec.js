@@ -3,7 +3,7 @@
 var angular = require('angular'),
   moment = require('moment');
 
-describe('mwlCalendar directive', function() {
+describe('mdCalendar directive', function() {
   var MwlCalendarCtrl,
     element,
     scope,
@@ -13,7 +13,7 @@ describe('mwlCalendar directive', function() {
     MwlCalendarMonthCtrl,
     clock,
     template =
-    '<mwl-calendar ' +
+    '<md-calendar ' +
       'events="vm.events" ' +
       'view="vm.calendarView" ' +
       'view-title="vm.calendarTitle" ' +
@@ -28,7 +28,7 @@ describe('mwlCalendar directive', function() {
       'day-view-end="22:00" ' +
       'day-view-split="30" ' +
       'cell-modifier="vm.modifyCell(calendarCell)"> ' +
-    '</mwl-calendar>';
+    '</md-calendar>';
   var calendarDay = new Date(2015, 4, 1);
 
   function prepareScope(vm) {
@@ -86,7 +86,7 @@ describe('mwlCalendar directive', function() {
     };
   }
 
-  beforeEach(angular.mock.module('mwl.calendar'));
+  beforeEach(angular.mock.module('md.calendar'));
 
   beforeEach(angular.mock.inject(function($compile, _$rootScope_, _$timeout_) {
     $rootScope = _$rootScope_;
@@ -100,7 +100,7 @@ describe('mwlCalendar directive', function() {
     scope.$apply();
     directiveScope = element.isolateScope();
     MwlCalendarCtrl = directiveScope.vm;
-    MwlCalendarMonthCtrl = element.find('mwl-calendar-month').isolateScope().vm;
+    MwlCalendarMonthCtrl = element.find('md-calendar-month').isolateScope().vm;
   }));
 
   it('allow to change the view', function() {

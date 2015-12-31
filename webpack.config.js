@@ -7,7 +7,7 @@ module.exports = {
   entry: __dirname + '/src/entry.js',
   devtool: 'eval',
   output: {
-    filename: 'angular-bootstrap-calendar.js'
+    filename: 'angular-material-calendar.js'
   },
   module: {
     preLoaders: [{

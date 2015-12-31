@@ -7,7 +7,7 @@ function requireAll(r) {
 }
 
 module.exports = angular
-  .module('mwl.calendar', [])
+  .module('md.calendar', [])
   .constant('calendarUseTemplates', EXCLUDE_TEMPLATES === false)
   .run(function($templateCache, calendarUseTemplates) {
     if (calendarUseTemplates) {

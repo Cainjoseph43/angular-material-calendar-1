@@ -6,25 +6,25 @@
 
   <div class="cal-day-panel clearfix" ng-style="{height: vm.dayViewHeight + 'px'}">
 
-    <mwl-calendar-hour-list
+    <md-calendar-hour-list
       day-view-start="vm.dayViewStart"
       day-view-end="vm.dayViewEnd"
       day-view-split="vm.dayViewSplit"
       on-timespan-click="vm.onTimespanClick"
       current-day="vm.currentDay">
-    </mwl-calendar-hour-list>
+    </md-calendar-hour-list>
 
     <div
       class="pull-left day-event day-highlight"
       ng-repeat="event in vm.view track by event.$id"
       ng-class="'dh-event-' + event.type + ' ' + event.cssClass"
       ng-style="{top: event.top + 'px', left: event.left + 60 + 'px', height: event.height + 'px'}"
-      mwl-draggable="event.draggable === true"
+      md-draggable="event.draggable === true"
       axis="'xy'"
       snap-grid="{y: 30, x: 50}"
       on-drag="vm.eventDragged(event, y)"
       on-drag-end="vm.eventDragComplete(event, y)"
-      mwl-resizable="event.resizable === true && event.endsAt"
+      md-resizable="event.resizable === true && event.endsAt"
       resize-edges="{top: true, bottom: true}"
       on-resize="vm.eventResized(event, edge, y)"
       on-resize-end="vm.eventResizeComplete(event, edge, y)">

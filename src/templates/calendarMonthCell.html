@@ -1,5 +1,5 @@
 <div
-  mwl-droppable
+  md-droppable
   on-drop="vm.handleEventDrop(dropData.event, day.date)"
   class="cal-month-day {{ day.cssClass }}"
   ng-class="{
@@ -11,28 +11,23 @@
             'cal-day-future': day.isFuture
           }">
 
-  <small
-    class="cal-events-num badge badge-important pull-left"
-    ng-show="day.badgeTotal > 0"
-    ng-bind="day.badgeTotal">
-  </small>
-
   <span
-    class="pull-right"
+    style="float:right;"
     data-cal-date
     ng-click="vm.calendarCtrl.drillDown(day.date)"
     ng-bind="day.label">
   </span>
 
+    <small ng-show="day.badgeTotal > 0">{{ day.badgeTotal }} event<span ng-if="day.badgeTotal > 1">s</span></small>
+
   <div class="cal-day-tick" ng-show="dayIndex === vm.openDayIndex && vm.view[vm.openDayIndex].events.length > 0">
-    <i class="glyphicon glyphicon-chevron-up"></i>
-    <i class="fa fa-chevron-up"></i>
+    <i class="material-icons">keyboard_arrow_up</i>
   </div>
 
-  <ng-include src="vm.cellEventsTemplateUrl || 'calendarMonthCellEvents.html'"></ng-include>
+<!--   <ng-include src="vm.cellEventsTemplateUrl || 'calendarMonthCellEvents.html'"></ng-include> -->
 
-  <div id="cal-week-box" ng-if="$first && rowHovered">
+<!--   <div id="cal-week-box" ng-if="$first && rowHovered">
     {{ vm.calendarConfig.i18nStrings.weekNumber.replace('{week}', day.date.week()) }}
-  </div>
+  </div> -->
 
 </div>

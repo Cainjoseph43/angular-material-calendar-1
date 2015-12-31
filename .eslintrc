@@ -3,7 +3,7 @@
   "rules": {
     "angular/controller-name": [2, "/[A-Z].*Ctrl/"],
     "angular/deferred": 2,
-    "angular/directive-name": [2, "mwl"],
+    "angular/directive-name": [2, "md"],
     "angular/empty-controller": 2,
     "angular/di-unused": 2
   },

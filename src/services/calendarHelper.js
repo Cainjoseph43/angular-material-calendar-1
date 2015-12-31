@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
+  .module('md.calendar')
   .factory('calendarHelper', function(dateFilter, moment, calendarConfig) {
 
     function formatDate(date, format) {

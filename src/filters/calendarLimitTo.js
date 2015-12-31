@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
+  .module('md.calendar')
   .filter('calendarLimitTo', function(limitToFilter) {
 
     if (angular.version.minor >= 4) { //1.4+ supports the begin attribute
