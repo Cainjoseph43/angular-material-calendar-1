@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
-  .controller('MwlCalendarMonthCtrl', function($scope, moment, calendarHelper, calendarConfig) {
+  .module('md.calendar')
+  .controller('MdCalendarMonthCtrl', function($scope, moment, calendarHelper, calendarConfig) {
 
     var vm = this;
     vm.calendarConfig = calendarConfig;
@@ -89,12 +89,12 @@ angular
     };
 
   })
-  .directive('mwlCalendarMonth', function(calendarUseTemplates) {
+  .directive('mdLargeCalendarMonth', function(calendarUseTemplates) {
 
     return {
       template: calendarUseTemplates ? require('./../templates/calendarMonthView.html') : '',
       restrict: 'EA',
-      require: '^mwlCalendar',
+      require: '^mdLargeCalendar',
       scope: {
         events: '=',
         currentDay: '=',
@@ -110,7 +110,7 @@ angular
         cellTemplateUrl: '@',
         cellEventsTemplateUrl: '@'
       },
-      controller: 'MwlCalendarMonthCtrl as vm',
+      controller: 'MdCalendarMonthCtrl as vm',
       link: function(scope, element, attrs, calendarCtrl) {
         scope.vm.calendarCtrl = calendarCtrl;
       },

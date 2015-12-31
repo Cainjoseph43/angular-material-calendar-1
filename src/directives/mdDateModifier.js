@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
-  .controller('MwlDateModifierCtrl', function($element, $attrs, $scope, moment) {
+  .module('md.calendar')
+  .controller('MdDateModifierCtrl', function($element, $attrs, $scope, moment) {
 
     var vm = this;
 
@@ -26,11 +26,11 @@ angular
     });
 
   })
-  .directive('mwlDateModifier', function() {
+  .directive('mdDateModifier', function() {
 
     return {
       restrict: 'A',
-      controller: 'MwlDateModifierCtrl as vm',
+      controller: 'MdDateModifierCtrl as vm',
       scope: {
         date: '=',
         increment: '=',

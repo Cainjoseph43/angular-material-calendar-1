@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
+  .module('md.calendar')
   .provider('calendarConfig', function() {
 
     var defaultFormats = {

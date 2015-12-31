@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const EXCLUDE_TEMPLATES = process.argv.indexOf('--exclude-templates') > -1;
 const MIN = process.argv.indexOf('-p') > -1;
 let cssFilename, jsFilename;
-jsFilename = cssFilename = 'angular-bootstrap-calendar';
+jsFilename = cssFilename = 'angular-material-calendar';
 if (!EXCLUDE_TEMPLATES) {
   jsFilename += '-tpls';
 }
@@ -35,7 +35,7 @@ module.exports = {
     path: __dirname + '/dist/js',
     filename: jsFilename,
     libraryTarget: 'umd',
-    library: 'angularBootstrapCalendarModuleName'
+    library: 'angularMaterialCalendarModuleName'
   },
   externals: {
     angular: 'angular',

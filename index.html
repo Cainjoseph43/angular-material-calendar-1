@@ -1,236 +1,132 @@
 <!doctype html>
 <html class="no-js">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>Angular bootstrap calendar demo</title>
-    <meta name="description" content="Angular bootstrap calendar demo">
+    <title>Angular material calendar demo</title>
+    <meta name="description" content="Angular material calendar demo">
     <meta name="viewport" content="width=device-width">
     <style type="text/css">
-      [ng-cloak] {
+    [ng-cloak] {
         display: none;
-      }
+    }
     </style>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/angular-bootstrap-calendar.min.css">
-    <link rel="stylesheet" href="demo/demo.css">
-  </head>
-  <body ng-app="demo" ng-cloak>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 
-    <a href="https://github.com/mattlewis92/angular-bootstrap-calendar" class="hidden-xs"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Angular Bootstrap Calendar</a>
-        </div>
-        <ul class="nav navbar-nav hidden-xs">
-          <li><a href="#demo">Demo</a></li>
-          <li><a href="#event-editor">Event editor</a></li>
-          <li><a href="https://github.com/mattlewis92/angular-bootstrap-calendar#installation">Installation</a></li>
-          <li><a href="https://github.com/mattlewis92/angular-bootstrap-calendar#documentation">Documentation</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container-fluid">
-
-      <div class="row" ng-controller="MainCtrl as vm" id="demo">
-
-        <div class="col-md-8 col-md-offset-2">
-          <h2 class="text-center">{{ vm.calendarTitle }}</h2>
-
-          <div class="row">
-
-            <div class="col-md-6 text-center">
-              <div class="btn-group">
-
-                <button
-                  class="btn btn-primary"
-                  mwl-date-modifier
-                  date="vm.calendarDay"
-                  decrement="vm.calendarView">
-                  Previous
-                </button>
-                <button
-                  class="btn btn-default"
-                  mwl-date-modifier
-                  date="vm.calendarDay"
-                  set-to-today>
-                  Today
-                </button>
-                <button
-                  class="btn btn-primary"
-                  mwl-date-modifier
-                  date="vm.calendarDay"
-                  increment="vm.calendarView">
-                  Next
-                </button>
-              </div>
+<body ng-app="demo" ng-cloak>
+    <div ng-controller="MainCtrl as vm" id="demo" layout="column" style="height: 100%;  background-color: #EBEBEB;">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Angular Material Calendar</h2>
+                <span flex></span>
+                <a href="#demo">Demo</a>
+                <a href="#event-editor">Event editor</a>
+                <a href="https://github.com/Jupitar/angular-material-calendar#installation">Installation</a>
+                <a href="https://github.com/Jupitar/angular-material-calendar#documentation">Documentation</a>
             </div>
-
-            <br class="visible-xs visible-sm">
-
-            <div class="col-md-6 text-center">
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'">Year</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'">Month</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'">Week</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'">Day</label>
-              </div>
-            </div>
-
-          </div>
-
-          <br>
-
-          <mwl-calendar
-            events="vm.events"
-            view="vm.calendarView"
-            view-title="vm.calendarTitle"
-            current-day="vm.calendarDay"
-            on-event-click="vm.eventClicked(calendarEvent)"
-            on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-            edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-            delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-            on-edit-event-click="vm.eventEdited(calendarEvent)"
-            on-delete-event-click="vm.eventDeleted(calendarEvent)"
-            cell-is-open="vm.isCellOpen"
-            day-view-start="06:00"
-            day-view-end="22:00"
-            day-view-split="30"
-            cell-modifier="vm.modifyCell(calendarCell)">
-          </mwl-calendar>
-
-          <br><br><br>
-
-          <script type="text/ng-template" id="modalContent.html">
-            <div class="modal-header">
-              <h3 class="modal-title">Event action occurred!</h3>
-            </div>
-            <div class="modal-body">
-              <p>Action: <pre>{{ vm.action }}</pre></p>
-              <p>Event: <pre>{{ vm.event | json }}</pre></p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-primary" ng-click="$close()">OK</button>
-            </div>
-          </script>
-
-          <h3 id="event-editor">
-            Edit events
-            <button
-              class="btn btn-primary pull-right"
-              ng-click="vm.events.push({title: 'New event', type: 'important', draggable: true, resizable: true})">
-              Add new
-            </button>
-            <div class="clearfix"></div>
-          </h3>
-
-          <table class="table table-bordered">
-
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Type</th>
-                <th>Starts at</th>
-                <th>Ends at</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr ng-repeat="event in vm.events track by $index">
-                <td>
-                  <input
-                    type="text"
-                    class="form-control"
-                    ng-model="event.title">
-                </td>
-                <td>
-                  <select ng-model="event.type" class="form-control">
-                    <option value="important">Important</option>
-                    <option value="warning">Warning</option>
-                    <option value="info">Info</option>
-                    <option value="inverse">Inverse</option>
-                    <option value="success">Success</option>
-                    <option value="special">Special</option>
-                  </select>
-                </td>
-                <td>
-                  <p class="input-group" style="max-width: 250px">
-                    <input
-                      type="text"
-                      class="form-control"
-                      readonly
-                      uib-datepicker-popup="dd MMMM yyyy"
-                      ng-model="event.startsAt"
-                      is-open="event.startOpen"
-                      close-text="Close" >
-                    <span class="input-group-btn">
-                      <button
-                        type="button"
-                        class="btn btn-default"
-                        ng-click="vm.toggle($event, 'startOpen', event)">
-                        <i class="glyphicon glyphicon-calendar"></i>
-                      </button>
-                    </span>
-                  </p>
-                  <uib-timepicker
-                    ng-model="event.startsAt"
-                    hour-step="1"
-                    minute-step="15"
-                    show-meridian="true">
-                  </uib-timepicker>
-                </td>
-                <td>
-                  <p class="input-group" style="max-width: 250px">
-                    <input
-                      type="text"
-                      class="form-control"
-                      readonly
-                      uib-datepicker-popup="dd MMMM yyyy"
-                      ng-model="event.endsAt"
-                      is-open="event.endOpen"
-                      close-text="Close">
-                    <span class="input-group-btn">
-                      <button
-                        type="button"
-                        class="btn btn-default"
-                        ng-click="vm.toggle($event, 'endOpen', event)">
-                        <i class="glyphicon glyphicon-calendar"></i>
-                      </button>
-                    </span>
-                  </p>
-                  <uib-timepicker
-                    ng-model="event.endsAt"
-                    hour-step="1"
-                    minute-step="15"
-                    show-meridian="true">
-                  </uib-timepicker>
-                </td>
-                <td>
-                  <button
-                    class="btn btn-danger"
-                    ng-click="vm.events.splice($index, 1)">
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-
-          </table>
-        </div>
-      </div>
-
+        </md-toolbar>
+        <md-content>
+            <md-card layout-padding flex>
+                <h2 style="text-align:center;">{{ vm.calendarTitle }}</h2>
+                <div layout="row">
+                    <md-button md-date-modifier date="vm.calendarDay" decrement="vm.calendarView">
+                        Previous
+                    </md-button>
+                    <md-button md-date-modifier date="vm.calendarDay" set-to-today>
+                        Today
+                    </md-button>
+                    <md-button md-date-modifier date="vm.calendarDay" increment="vm.calendarView">
+                        Next
+                    </md-button>
+                    <span flex></span>
+                    <md-radio-group ng-model="vm.calendarView">
+                        <md-radio-button class="md-primary" value="year">Year</md-radio-button>
+                        <md-radio-button class="md-primary" value="month">Month</md-radio-button>
+                        <md-radio-button class="md-primary" value="week">Week</md-radio-button>
+                        <md-radio-button class="md-primary" value="day">Day</md-radio-button>
+                    </md-radio-group>
+                </div>
+                <br>
+                <md-large-calendar events="vm.events" view="vm.calendarView" view-title="vm.calendarTitle" current-day="vm.calendarDay" on-event-click="vm.eventClicked(calendarEvent)" on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd" on-edit-event-click="vm.eventEdited(calendarEvent)" on-delete-event-click="vm.eventDeleted(calendarEvent)" cell-is-open="vm.isCellOpen" day-view-start="06:00" day-view-end="22:00" day-view-split="30" cell-modifier="vm.modifyCell(calendarCell)">
+                </md-large-calendar>
+                <br>
+                <br>
+                <br>
+                <script type="text/ng-template" id="modalContent.html">
+                    <md-dialog aria-label="Modal" ng-cloak>
+                        <form>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools">
+                                    <h2>Event action occurred!</h2>
+                                </div>
+                            </md-toolbar>
+                            <md-dialog-content>
+                                <div class="md-dialog-content">
+                                    <p>Action: <pre>{{ vm.action }}</pre></p>
+                                    <p>Event: <pre>{{ vm.event | json }}</pre></p>
+                                </div>
+                            </md-dialog-content>
+                            <md-dialog-actions layout="row">
+                                <md-button ng-click="hide()">Hide</md-button>
+                            </md-dialog-actions>
+                            </md-dialog-content>
+                        </form>
+                    </md-dialog>
+                </script>
+            </md-card>
+            <md-card layout-padding flex>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Edit events</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions>
+                    <md-card-icon-actions>
+                        <md-button class="md-icon-button" ng-click="vm.events.push({title: 'New event', type: 'important', draggable: true, resizable: true})" aria-label="Add New">
+                            <i class="material-icons">add_circle</i>
+                        </md-button>
+                    </md-card-icon-actions>
+                </md-card-actions>
+                <md-card-content>
+                    <div layout="column" ng-cloak class="md-inline-form">
+                        <form ng-repeat="event in vm.events track by $index">
+                            <div layout-gt-xs="row">
+                                <tr ng-repeat="event in vm.events track by $index">
+                                    <md-input-container>
+                                        <label>Title</label>
+                                        <input ng-model="event.title">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>Type</label>
+                                        <md-select ng-model="event.type">
+                                            <md-option value="important">Important</md-option>
+                                            <md-option value="warning">Warning</md-option>
+                                            <md-option value="info">Info</md-option>
+                                            <md-option value="inverse">Inverse</md-option>
+                                            <md-option value="success">Success</md-option>
+                                            <md-option value="special">Special</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                    <md-datepicker ng-model="event.startsAt" md-placeholder="Starts At"></md-datepicker>
+                                    <md-datepicker ng-model="event.endsAt" md-placeholder="Ends At"></md-datepicker>
+                                    <md-input-container>
+                                        <md-button ng-click="vm.events.splice($index, 1)">Delete</md-button>
+                                    </md-input-container>
+                            </div>
+                        </form>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </md-content>
     </div>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-touch.min.js"></script>
+    <script src="dist/js/angular-material-calendar.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
-    <script src="dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
     <script src="demo/demo.js"></script>
 </body>
+
 </html>

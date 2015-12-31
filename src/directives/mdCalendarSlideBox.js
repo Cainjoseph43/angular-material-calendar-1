@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
-  .controller('MwlCalendarSlideBoxCtrl', function($sce, $scope, $timeout, calendarConfig) {
+  .module('md.calendar')
+  .controller('MdCalendarSlideBoxCtrl', function($sce, $scope, $timeout, calendarConfig) {
 
     var vm = this;
     vm.$sce = $sce;
@@ -19,14 +19,14 @@ angular
     });
 
   })
-  .directive('mwlCalendarSlideBox', function(calendarUseTemplates) {
+  .directive('mdCalendarSlideBox', function(calendarUseTemplates) {
 
     return {
       restrict: 'EA',
       template: calendarUseTemplates ? require('./../templates/calendarSlideBox.html') : '',
       replace: true,
-      controller: 'MwlCalendarSlideBoxCtrl as vm',
-      require: ['^?mwlCalendarMonth', '^?mwlCalendarYear'],
+      controller: 'MdCalendarSlideBoxCtrl as vm',
+      require: ['^?mdCalendarMonth', '^?mdCalendarYear'],
       link: function(scope, elm, attrs, ctrls) {
         scope.isMonthView = !!ctrls[0];
         scope.isYearView = !!ctrls[1];

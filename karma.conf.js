@@ -2,7 +2,6 @@
 
 var webpack = require('webpack');
 var WATCH = process.argv.indexOf('--watch') > -1;
-var MIN = process.argv.indexOf('--min') > -1;
 
 var webpackConfig = {
   cache: true,
@@ -39,19 +38,6 @@ var webpackConfig = {
 
 if (!WATCH) {
   webpackConfig.plugins.push(new webpack.NoErrorsPlugin());
-}
-
-if (MIN) {
-  webpackConfig.module.loaders.push({
-    test: /.*src.*\.js$/,
-    loaders: ['uglify', 'ng-annotate'],
-    exclude: /node_modules/
-  });
-}
-
-var browsers = ['PhantomJS2'];
-if (process.env.CI) { //phantomjs2 doesnt work on travis, but is way faster to run test locally
-  browsers = ['PhantomJS'];
 }
 
 module.exports = function(config) {
@@ -109,7 +95,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: browsers,
+    browsers: ['PhantomJS'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

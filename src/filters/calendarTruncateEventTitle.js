@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
+  .module('md.calendar')
   .filter('calendarTruncateEventTitle', function() {
 
     return function(string, length, boxHeight) {

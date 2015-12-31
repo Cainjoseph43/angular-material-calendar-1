@@ -1,14 +1,4 @@
-# Angular Bootstrap Calendar
-
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mattlewis92/angular-bootstrap-calendar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Build Status](https://travis-ci.org/mattlewis92/angular-bootstrap-calendar.svg?branch=master)](https://travis-ci.org/mattlewis92/angular-bootstrap-calendar)
-[![Bower version](https://badge.fury.io/bo/angular-bootstrap-calendar.svg)](http://badge.fury.io/bo/angular-bootstrap-calendar)
-[![npm version](https://badge.fury.io/js/angular-bootstrap-calendar.svg)](http://badge.fury.io/js/angular-bootstrap-calendar)
-[![peerDependency Status](https://david-dm.org/mattlewis92/angular-bootstrap-calendar/peer-status.svg)](https://david-dm.org/mattlewis92/angular-bootstrap-calendar#info=peerDependencies)
-[![devDependency Status](https://david-dm.org/mattlewis92/angular-bootstrap-calendar/dev-status.svg)](https://david-dm.org/mattlewis92/angular-bootstrap-calendar#info=devDependencies)
-[![GitHub issues](https://img.shields.io/github/issues/mattlewis92/angular-bootstrap-calendar.svg)](https://github.com/mattlewis92/angular-bootstrap-calendar/issues)
-[![GitHub stars](https://img.shields.io/github/stars/mattlewis92/angular-bootstrap-calendar.svg)](https://github.com/mattlewis92/angular-bootstrap-calendar/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mattlewis92/angular-bootstrap-calendar/master/LICENSE)
+# Angular Material Calendar
 
 ## Table of contents
 
@@ -33,54 +23,30 @@ Pull requests are welcome.
 ## Installation
 
 The calendar has a few dependencies, these are as follows, and must be included BEFORE the plugin files:
-
+cd
 * [AngularJS](https://angularjs.org/) 1.3.x or 1.4.x are supported
-* [Bootstrap](http://getbootstrap.com/) 3+ (CSS only)
+* [Angular Material](https://material.angularjs.org/) 0.11.x 
 * [Moment.js](http://momentjs.com/)
-* [ui-bootstrap](http://angular-ui.github.io/bootstrap/) (0.14.0+, optional, include for collapse animations and tooltips.
 * [interact.js](http://interactjs.io/) (optional, include to allow drag and drop on the calendar)
-* [ngTouch](https://docs.angularjs.org/api/ngTouch) (optional, include if using the calendar on mobile devices)
 
-You can install through bower:
-
-```
-bower install --save angular-bootstrap-calendar
-```
-
-You will then need to include the JS and CSS files for the plugin:
+You will need to include the JS and CSS files for the plugin:
 
 ```
-<link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
-<script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+<link href="angular-material-calendar/dist/css/angular-material-calendar.min.css" rel="stylesheet">
+<script src="angular-material-calendar/dist/js/angular-material-calendar-tpls.min.js"></script>
 ```
 
-And finally add the module dependency in your AngularJS app (you can remove ui.bootstrap if you don't want the extra dependency - it is only required for collapse animations and tooltips):
+Add the module dependency in your AngularJS app (you can remove ui.bootstrap if you don't want the extra dependency - it is only required for collapse animations and tooltips):
 
 ```javascript
-angular.module('myApp', ['mwl.calendar', 'ui.bootstrap']);
-```
-
-Alternatively you can install through npm:
-```
-npm install --save angular-bootstrap-calendar
-```
-
-Or if using npm 3+ where peer dependencies aren't automatically installed:
-```
-npm install --save angular-bootstrap-calendar angular bootstrap moment angular-ui-bootstrap
-```
-
-Then add as a dependency to your app:
-
-```javascript
-angular.module('myApp', [require('angular-bootstrap-calendar'), require('angular-ui-bootstrap')]);
+angular.module('myApp', ['md.calendar', 'ngMaterial']);
 ```
 
 ## Documentation
 
 There is a single directive exposed to create the calendar, use it like so:
 ```javascript
-<mwl-calendar
+<md-calendar
     view="calendarView"
     current-day="calendarDay"
     events="events"
@@ -92,7 +58,7 @@ There is a single directive exposed to create the calendar, use it like so:
     on-edit-event-click="eventEdited(calendarEvent)"
     on-delete-event-click="eventDeleted(calendarEvent)"
     cell-is-open="true">
-</mwl-calendar>
+</md-calendar>
 ```
 
 An explanation of the properties is as follows:
@@ -203,7 +169,7 @@ All templates apart from the month cell templates are linked to directives so yo
 ```
 //This will change the slide box directive template to one of your choosing
 app.config(['$provide', function($provide) {
-  $provide.decorator('mwlCalendarSlideBoxDirective', ['$delegate', function($delegate) {
+  $provide.decorator('mdCalendarSlideBoxDirective', ['$delegate', function($delegate) {
     var directive = $delegate[0];
     delete directive.template; //the calendar uses template instead of template-url so you need to delete this
     directive.templateUrl = 'path/to/my/slide/box/template.html';
@@ -302,11 +268,11 @@ angular.module('myModule')
   });
 ```
 
-For a full list of all available formats and their defaults see [calendarConfig.js](https://github.com/mattlewis92/angular-bootstrap-calendar/blob/master/src/services/calendarConfig.js)
+For a full list of all available formats and their defaults see [calendarConfig.js](http://jupitar.github.io/angular-material-calendar/blob/master/src/services/calendarConfig.js)
 
 ## Demo
 
-http://mattlewis92.github.io/angular-bootstrap-calendar/
+http://jupitar.github.io/angular-material-calendar/
 
 ## Development
 

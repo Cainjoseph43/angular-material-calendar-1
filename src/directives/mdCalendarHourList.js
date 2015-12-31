@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
-  .controller('MwlCalendarHourListCtrl', function($scope, moment, calendarConfig, calendarHelper) {
+  .module('md.calendar')
+  .controller('MdCalendarHourListCtrl', function($scope, moment, calendarConfig, calendarHelper) {
     var vm = this;
     var dayViewStart, dayViewEnd;
 
@@ -48,12 +48,12 @@ angular
     });
 
   })
-  .directive('mwlCalendarHourList', function(calendarUseTemplates) {
+  .directive('mdCalendarHourList', function(calendarUseTemplates) {
 
     return {
       restrict: 'EA',
       template: calendarUseTemplates ? require('./../templates/calendarHourList.html') : '',
-      controller: 'MwlCalendarHourListCtrl as vm',
+      controller: 'MdCalendarHourListCtrl as vm',
       scope: {
         currentDay: '=',
         dayViewStart: '=',

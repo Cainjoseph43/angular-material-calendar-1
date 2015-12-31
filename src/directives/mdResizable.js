@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
-  .controller('MwlResizableCtrl', function($element, $scope, $parse, $attrs, $timeout, interact) {
+  .module('md.calendar')
+  .controller('MdResizableCtrl', function($element, $scope, $parse, $attrs, $timeout, interact) {
 
     if (!interact) {
       return;
@@ -127,11 +127,11 @@ angular
     });
 
   })
-  .directive('mwlResizable', function() {
+  .directive('mdResizable', function() {
 
     return {
       restrict: 'A',
-      controller: 'MwlResizableCtrl'
+      controller: 'MdResizableCtrl'
     };
 
   });

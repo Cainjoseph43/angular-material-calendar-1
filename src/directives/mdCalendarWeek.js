@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
-  .controller('MwlCalendarWeekCtrl', function($scope, $sce, moment, calendarHelper, calendarConfig) {
+  .module('md.calendar')
+  .controller('MdCalendarWeekCtrl', function($scope, $sce, moment, calendarHelper, calendarConfig) {
 
     var vm = this;
 
@@ -75,12 +75,12 @@ angular
     };
 
   })
-  .directive('mwlCalendarWeek', function(calendarUseTemplates) {
+  .directive('mdCalendarWeek', function(calendarUseTemplates) {
 
     return {
       template: calendarUseTemplates ? require('./../templates/calendarWeekView.html') : '',
       restrict: 'EA',
-      require: '^mwlCalendar',
+      require: '^mdLargeCalendar',
       scope: {
         events: '=',
         currentDay: '=',
@@ -91,7 +91,7 @@ angular
         dayViewSplit: '=',
         onTimespanClick: '='
       },
-      controller: 'MwlCalendarWeekCtrl as vm',
+      controller: 'MdCalendarWeekCtrl as vm',
       link: function(scope, element, attrs, calendarCtrl) {
         scope.vm.calendarCtrl = calendarCtrl;
       },

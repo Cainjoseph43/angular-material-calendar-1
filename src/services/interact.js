@@ -10,5 +10,5 @@ try {
 }
 
 angular
-  .module('mwl.calendar')
+  .module('md.calendar')
   .constant('interact', interact);

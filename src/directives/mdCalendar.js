@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
-  .controller('MwlCalendarCtrl', function($scope, $log, $timeout, $attrs, $locale, moment, calendarTitle) {
+  .module('md.calendar')
+  .controller('MdCalendarCtrl', function($scope, $log, $timeout, $attrs, $locale, moment, calendarTitle) {
 
     var vm = this;
 
@@ -108,7 +108,7 @@ angular
     });
 
   })
-  .directive('mwlCalendar', function(calendarUseTemplates) {
+  .directive('mdLargeCalendar', function(calendarUseTemplates) {
 
     return {
       template: calendarUseTemplates ? require('./../templates/calendar.html') : '',
@@ -134,7 +134,7 @@ angular
         monthCellTemplateUrl: '@',
         monthCellEventsTemplateUrl: '@'
       },
-      controller: 'MwlCalendarCtrl as vm',
+      controller: 'MdCalendarCtrl as vm',
       bindToController: true
     };
 

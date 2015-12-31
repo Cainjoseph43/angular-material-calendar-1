@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 angular
-  .module('mwl.calendar')
-  .controller('MwlCalendarYearCtrl', function($scope, moment, calendarHelper) {
+  .module('md.calendar')
+  .controller('MdCalendarYearCtrl', function($scope, moment, calendarHelper) {
 
     var vm = this;
     vm.openMonthIndex = null;
@@ -62,12 +62,12 @@ angular
     };
 
   })
-  .directive('mwlCalendarYear', function(calendarUseTemplates) {
+  .directive('mdCalendarYear', function(calendarUseTemplates) {
 
     return {
       template: calendarUseTemplates ? require('./../templates/calendarYearView.html') : '',
       restrict: 'EA',
-      require: '^mwlCalendar',
+      require: '^mdLargeCalendar',
       scope: {
         events: '=',
         currentDay: '=',
@@ -81,7 +81,7 @@ angular
         onTimespanClick: '=',
         cellModifier: '='
       },
-      controller: 'MwlCalendarYearCtrl as vm',
+      controller: 'MdCalendarYearCtrl as vm',
       link: function(scope, element, attrs, calendarCtrl) {
         scope.vm.calendarCtrl = calendarCtrl;
       },
