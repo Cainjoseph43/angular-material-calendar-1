@@ -515,19 +515,19 @@ span[data-cal-date]:hover {
   cursor: default;
 }
 .cal-day-today {
-  background-color: #cbd0ed;
+  background-color: #d8ffcf;
 }
 .cal-day-today span[data-cal-date] {
-  color: #3f51b5;
+  color: #1d9400;
 }
 .cal-month-box .cal-day-today span[data-cal-date] {
   font-size: 1.9em;
 }
 .cal-day-holiday span[data-cal-date] {
-  color: #800080;
+  color: #1d9400;
 }
 .cal-day-weekend span[data-cal-date] {
-  color: darkred;
+  color: #1d9400;
 }
 #cal-week-box {
   border: 1px solid #e1e1e1;
