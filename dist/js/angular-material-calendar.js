@@ -824,7 +824,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	  }])
-	  .directive('mdCalendarYear', ["calendarUseTemplates", function(calendarUseTemplates) {
+	  .directive('mdCalendarYearElem', ["calendarUseTemplates", function(calendarUseTemplates) {
 
 	    return {
 	      template: calendarUseTemplates ? __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./../templates/calendarYearView.html\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) : '',

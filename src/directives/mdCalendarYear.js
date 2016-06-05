@@ -62,7 +62,7 @@ angular
     };
 
   })
-  .directive('mdCalendarYear', function(calendarUseTemplates) {
+  .directive('mdCalendarYearElem', function(calendarUseTemplates) {
 
     return {
       template: calendarUseTemplates ? require('./../templates/calendarYearView.html') : '',
